@@ -9,8 +9,8 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 24.0),
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 30.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -22,6 +22,9 @@ class HomeViewBody extends StatelessWidget {
           Text(
             'Best Seller',
             style: Styles.textStyle18,
+          ),
+          SizedBox(
+            height: 20,
           ),
           BestSellerListItem(),
         ],
@@ -38,25 +41,39 @@ class BestSellerListItem extends StatelessWidget {
     return SizedBox(
       height: 125,
       child: Row(
-        children: [AspectRatio(
-          aspectRatio: 2.5 / 4,
-          child: Container(
-            //height:  MediaQuery.of(context).size.height * .3,
-            //width: MediaQuery.of(context).size.width * .25,
-            decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.circular(8),
-                image: const DecorationImage(
-                  fit: BoxFit.fill,
-                  image: AssetImage(AssetsData.testImage),
-                )),
+        children: [
+          AspectRatio(
+            aspectRatio: 2.5 / 4,
+            child: Container(
+              //height:  MediaQuery.of(context).size.height * .3,
+              //width: MediaQuery.of(context).size.width * .25,
+              decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.circular(8),
+                  image: const DecorationImage(
+                    fit: BoxFit.fill,
+                    image: AssetImage(AssetsData.testImage),
+                  )),
+            ),
           ),
-        ),
-        const Column(
-
-        )],
+          const SizedBox(
+            width: 30,
+          ),
+          Column(
+            children: [
+              SizedBox(
+                width: MediaQuery.of(context).size.width * .5,
+                child: const Text(
+                  'Harry Potter and the Goblet of Fire',
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: Styles.textStyle20,
+                ),
+              )
+            ],
+          )
+        ],
       ),
     );
   }
 }
-
