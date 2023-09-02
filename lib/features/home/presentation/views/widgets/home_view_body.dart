@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_bookley/core/utils/styles.dart';
 import 'package:my_bookley/features/home/presentation/views/widgets/best_seller_list_view_item.dart';
 import 'custom_app_bar.dart';
@@ -32,4 +33,3 @@ class HomeViewBody extends StatelessWidget {
     );
   }
 }
-
