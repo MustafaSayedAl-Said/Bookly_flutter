@@ -3,6 +3,7 @@ import 'package:my_bookley/core/utils/styles.dart';
 import 'package:my_bookley/features/home/presentation/views/widgets/book_rating.dart';
 import 'package:my_bookley/features/home/presentation/views/widgets/custom_book_item.dart';
 
+import 'books_action.dart';
 import 'custom_book_details_appbar.dart';
 
 class BookDetailsViewBody extends StatelessWidget {
@@ -17,7 +18,7 @@ class BookDetailsViewBody extends StatelessWidget {
           const CustomBookDetailsAppBar(),
           Padding(
             padding: EdgeInsets.symmetric(
-                horizontal: MediaQuery.of(context).size.width * 0.2),
+                horizontal: MediaQuery.of(context).size.width * 0.25),
             child: const CustomBookImage(),
           ),
           const SizedBox(
@@ -34,11 +35,16 @@ class BookDetailsViewBody extends StatelessWidget {
             opacity: .7,
             child: Text(
               'Rudyard Kipling',
-              style: Styles.textStyle18.copyWith(fontStyle: FontStyle.italic, fontWeight: FontWeight.w500),
+              style: Styles.textStyle18.copyWith(
+                  fontStyle: FontStyle.italic, fontWeight: FontWeight.w500),
             ),
           ),
-          const SizedBox(height: 18.0,),
+          const SizedBox(
+            height: 18.0,
+          ),
           const BookRating(mainAxisAlignment: MainAxisAlignment.center),
+          const SizedBox(height: 37.0,),
+          const BooksAction(),
         ],
       ),
     );
