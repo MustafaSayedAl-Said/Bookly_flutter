@@ -19,11 +19,18 @@ class FeaturedBooksListView extends StatelessWidget {
           return SizedBox(
             height: MediaQuery.of(context).size.height * .3,
             child: ListView.builder(
+                itemCount: state.books.length,
+                physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  return const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8.0),
-                    child: CustomBookImage(),
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: CustomBookImage(
+                      imgURL: state.books[index].volumeInfo!.imageLinks != null
+                          ? state.books[index].volumeInfo!.imageLinks!.thumbnail
+                              .toString()
+                          : 'https://i5.walmartimages.com/asr/55e17340-d579-4e0a-b0e4-988f4bbe9494.0bfe8218098546df097c973bce5dc538.jpeg?odnHeight=2000&odnWidth=2000&odnBg=FFFFFF',
+                    ),
                   );
                 }),
           );

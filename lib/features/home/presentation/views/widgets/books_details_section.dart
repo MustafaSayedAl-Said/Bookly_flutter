@@ -16,7 +16,7 @@ class BookDetailsSection extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(
               horizontal: MediaQuery.of(context).size.width * 0.25),
-          child: const CustomBookImage(),
+          child: const CustomBookImage(imgURL: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1638425885i/16299.jpg',),
         ),
         const SizedBox(
           height: 20.0,

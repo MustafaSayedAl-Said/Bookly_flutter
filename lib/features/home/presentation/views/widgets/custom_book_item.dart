@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/assets.dart';
 
 
 class CustomBookImage extends StatelessWidget {
   const CustomBookImage({
-    super.key,
+    super.key, required this.imgURL,
   });
 
+  final String imgURL;
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
@@ -18,9 +18,9 @@ class CustomBookImage extends StatelessWidget {
         decoration: BoxDecoration(
             color: Colors.red,
             borderRadius: BorderRadius.circular(16),
-            image: const DecorationImage(
+            image:  DecorationImage(
               fit: BoxFit.fill,
-              image: AssetImage(AssetsData.testImage),
+              image: NetworkImage(imgURL),
             )),
       ),
     );
