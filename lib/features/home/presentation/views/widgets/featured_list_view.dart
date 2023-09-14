@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:my_bookley/core/widgets/custom_error_widget.dart';
 import 'package:my_bookley/core/widgets/custom_loading_indicator.dart';
 import 'package:my_bookley/features/home/presentation/manager/featured_books_cubit/featured_books_cubit.dart';
 
+import '../../../../../core/utils/app_router.dart';
 import 'custom_book_item.dart';
 
 class FeaturedBooksListView extends StatelessWidget {
@@ -25,11 +27,19 @@ class FeaturedBooksListView extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: CustomBookImage(
-                      imgURL: state.books[index].volumeInfo!.imageLinks != null
-                          ? state.books[index].volumeInfo!.imageLinks!.thumbnail
-                              .toString()
-                          : 'https://i5.walmartimages.com/asr/55e17340-d579-4e0a-b0e4-988f4bbe9494.0bfe8218098546df097c973bce5dc538.jpeg?odnHeight=2000&odnWidth=2000&odnBg=FFFFFF',
+                    child: GestureDetector(
+                      onTap: () {
+                        GoRouter.of(context).push(AppRouter.kBookView,
+                            extra: state.books[index]);
+                      },
+                      child: CustomBookImage(
+                        imgURL: state.books[index].volumeInfo!.imageLinks !=
+                                null
+                            ? state
+                                .books[index].volumeInfo!.imageLinks!.thumbnail
+                                .toString()
+                            : 'https://i5.walmartimages.com/asr/55e17340-d579-4e0a-b0e4-988f4bbe9494.0bfe8218098546df097c973bce5dc538.jpeg?odnHeight=2000&odnWidth=2000&odnBg=FFFFFF',
+                      ),
                     ),
                   );
                 }),

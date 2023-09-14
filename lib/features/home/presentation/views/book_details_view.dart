@@ -4,6 +4,7 @@ import 'package:my_bookley/features/home/presentation/manager/similar_books_cubi
 import 'package:my_bookley/features/home/presentation/views/widgets/book_details_view_body.dart';
 
 import '../../data/models/book_model/BookModel.dart';
+
 class BookDetailsView extends StatefulWidget {
   const BookDetailsView({super.key, required this.bookModel});
 
@@ -14,17 +15,20 @@ class BookDetailsView extends StatefulWidget {
 }
 
 class _BookDetailsViewState extends State<BookDetailsView> {
-
   @override
   void initState() {
-    BlocProvider.of<SimilarBooksCubit>(context).fetchSimilarBooks(category: widget.bookModel.volumeInfo!.categories![0]);
+    BlocProvider.of<SimilarBooksCubit>(context).fetchSimilarBooks(
+        category: widget.bookModel.volumeInfo!.categories![0]);
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return SafeArea(
       child: Scaffold(
-        body: BookDetailsViewBody(),
+        body: BookDetailsViewBody(
+          bookModel: widget.bookModel,
+        ),
       ),
     );
   }

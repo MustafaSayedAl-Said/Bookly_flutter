@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:my_bookley/features/home/data/models/book_model/BookModel.dart';
 import 'package:my_bookley/features/home/presentation/views/widgets/book_rating.dart';
 import 'package:my_bookley/features/home/presentation/views/widgets/books_action.dart';
 import 'package:my_bookley/features/home/presentation/views/widgets/custom_book_item.dart';
 
 import '../../../../../core/utils/styles.dart';
 
-
 class BookDetailsSection extends StatelessWidget {
-  const BookDetailsSection({super.key});
+  const BookDetailsSection({super.key, required this.bookModel});
 
+  final BookModel bookModel;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -16,14 +17,17 @@ class BookDetailsSection extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(
               horizontal: MediaQuery.of(context).size.width * 0.25),
-          child: const CustomBookImage(imgURL: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1638425885i/16299.jpg',),
+          child: CustomBookImage(
+            imgURL: bookModel.volumeInfo?.imageLinks?.thumbnail ?? '',
+          ),
         ),
         const SizedBox(
           height: 20.0,
         ),
-        const Text(
-          'The Jungle Book',
-          style: Styles.textStyle30,
+        Text(
+          bookModel.volumeInfo!.title!,
+          style: Styles.textStyle30.copyWith(fontWeight: FontWeight.bold),
+          textAlign: TextAlign.center,
         ),
         const SizedBox(
           height: 6.0,
@@ -31,7 +35,7 @@ class BookDetailsSection extends StatelessWidget {
         Opacity(
           opacity: .7,
           child: Text(
-            'Rudyard Kipling',
+            bookModel.volumeInfo!.authors?[0] ?? '',
             style: Styles.textStyle18.copyWith(
                 fontStyle: FontStyle.italic, fontWeight: FontWeight.w500),
           ),
@@ -39,7 +43,11 @@ class BookDetailsSection extends StatelessWidget {
         const SizedBox(
           height: 18.0,
         ),
-        const BookRating(mainAxisAlignment: MainAxisAlignment.center, rating: 5, count: 250,),
+        BookRating(
+          mainAxisAlignment: MainAxisAlignment.center,
+          rating: bookModel.volumeInfo!.averageRating ?? 0,
+          count: bookModel.volumeInfo!.ratingsCount ?? 0,
+        ),
         const SizedBox(
           height: 20.0,
         ),
